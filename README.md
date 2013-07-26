@@ -14,43 +14,43 @@ OpenLDAP 2.4 included the dynamic config option, which is what this cookbook use
     * Includes ppolicy overlay
     * Sets up access controls/no unauthenticated access  
 
-* Setup attributes listed below
-* You can optionally supply your own ldif instead of using the provided
+* Setup attributes listed below *
+* You can optionally supply your own ldif instead of using the provided *
 
 # Attributes
 ### Main Options ###
 
-_Domain name to use which creates the suffix_  
-`node[:ldap][:domain] = 'default.com'`
+**Domain name to use which creates the suffix**  
+`node['openldap-server'][:domain] = 'default.com'`
 
-_Root password for the LDAP database_  
+**Root password for the LDAP database**  
 _This can and should be hashed and salted, use slappasswd to generate_  
-`node[:ldap][:rootpw] = 'default'`
+`node['openldap-server'][:rootpw] = 'default'`
 
-_User attribute to use for root user_  
-__This ends up as "cn=admin,dc=example,dc=com"__  
-`node[:ldap][:root_user_attr] = "cn=admin"`
+**User attribute to use for root user**  
+_This ends up as "cn=admin,dc=example,dc=com"_  
+`node['openldap-server'][:root_user_attr] = "cn=admin"`
 
-_Where do you want the ldap DB to be stored_  
-`node[:ldap][:db_dir] = '/var/lib/ldap'`
+**Where do you want the ldap DB to be stored**  
+`node['openldap-server'][:db_dir] = '/var/lib/ldap'`
 
-_You can use these options in your own template if you like_
+**You can use these options in your own template if you like**  
 _To supply your own ldif template/file to use_  
-`node[:ldap[:db_ldif] = 'db.ldif.erb'`  
+`node['openldap-server'][:db_ldif] = 'db.ldif.erb'`  
 
 
 
 ### Default Config Options (/etc/default/slapd) ###
 
-    default[:ldap][:default_config][:slapd_conf] = nil # SLAPD_CONF  
-    default[:ldap][:default_config][:slapd_user] = 'openldap' # SLAPD_USER  
-    default[:ldap][:default_config][:slapd_group] = 'openldap' # SLAPD_GROUP  
-    default[:ldap][:default_config][:slapd_pidfile] = nil # SLAPD_PIDFILE  
-    default[:ldap][:default_config][:slapd_services] = "ldap:/// ldapi:///" # SLAPD_SERVICES  
-    default[:ldap][:default_config][:slapd_nostart] = false # SLAPD_NO_START  
-    default[:ldap][:default_config][:slapd_sentinel_file] = '/etc/ldap/noslapd' # SLAPD_SENTINEL_FILE  
-    default[:ldap][:default_config][:slapd_kerb_file] = '/etc/krb5.keytab' # KRB_KTNAME  
-    default[:ldap][:default_config][:slapd_options] = nil # SLAPD_OPTIONS  
+    default['openldap-server'][:default_config][:slapd_conf] = nil # SLAPD_CONF  
+    default['openldap-server'][:default_config][:slapd_user] = 'openldap' # SLAPD_USER  
+    default['openldap-server'][:default_config][:slapd_group] = 'openldap' # SLAPD_GROUP  
+    default['openldap-server'][:default_config][:slapd_pidfile] = nil # SLAPD_PIDFILE  
+    default['openldap-server'][:default_config][:slapd_services] = "ldap:/// ldapi:///" # SLAPD_SERVICES  
+    default['openldap-server'][:default_config][:slapd_nostart] = false # SLAPD_NO_START  
+    default['openldap-server'][:default_config][:slapd_sentinel_file] = '/etc/ldap/noslapd' # SLAPD_SENTINEL_FILE  
+    default['openldap-server'][:default_config][:slapd_kerb_file] = '/etc/krb5.keytab' # KRB_KTNAME  
+    default['openldap-server'][:default_config][:slapd_options] = nil # SLAPD_OPTIONS  
 
 
 # Recipes
