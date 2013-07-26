@@ -7,11 +7,11 @@
 # All rights reserved - Do Not Redistribute
 #
 
-node.default[:ldap][:domain_suffix] = node[:ldap][:domain].split('.').collect {|n| "dc=#{n}"}.join(',')
-node.default[:ldap][:rootDN] = "#{node[:ldap][:root_user_attr]},#{node[:ldap][:domain_suffix]}"
+node.default['openldap-server'][:domain_suffix] = node['openldap-server'][:domain].split('.').collect {|n| "dc=#{n}"}.join(',')
+node.default['openldap-server'][:rootDN] = "#{node['openldap-server'][:root_user_attr]},#{node['openldap-server'][:domain_suffix]}"
 
-include_recipe 'ldap::install'
-include_recipe 'ldap::createdb'
+include_recipe 'openldap-server::install'
+include_recipe 'openldap-server::createdb'
 
 service 'slapd' do
   action [:start]

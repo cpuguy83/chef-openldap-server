@@ -29,15 +29,15 @@ template '/etc/default/slapd' do
   group 'root'
   mode '0644'
   variables( {
-    slapd_conf_file: node[:ldap][:default_config][:slapd_conf_file],
-    slapd_user: node[:ldap][:default_config][:slapd_user],
-    slapd_group: node[:ldap][:default_config][:slapd_group],
-    slapd_pidfile:  node[:ldap][:default_config][:slapd_pidfile],
-    slapd_services: node[:ldap][:default_config][:slapd_services],
-    slapd_nostart: node[:ldap][:default_config][:slapd_nostart],
-    slapd_sentinel_file: node[:ldap][:default_config][:slapd_sentinel_file],
-    slapd_kerb_file:  node[:ldap][:default_config][:slapd_kerb_file],
-    slapd_options:  node[:ldap][:default_config][:slapd_options]
+    slapd_conf_file: node['openldap-server'][:default_config][:slapd_conf_file],
+    slapd_user: node['openldap-server'][:default_config][:slapd_user],
+    slapd_group: node['openldap-server'][:default_config][:slapd_group],
+    slapd_pidfile:  node['openldap-server'][:default_config][:slapd_pidfile],
+    slapd_services: node['openldap-server'][:default_config][:slapd_services],
+    slapd_nostart: node['openldap-server'][:default_config][:slapd_nostart],
+    slapd_sentinel_file: node['openldap-server'][:default_config][:slapd_sentinel_file],
+    slapd_kerb_file:  node['openldap-server'][:default_config][:slapd_kerb_file],
+    slapd_options:  node['openldap-server'][:default_config][:slapd_options]
   })
   notifies :reload, "service[slapd]"
 end

@@ -1,5 +1,5 @@
 template '/tmp/db.ldif' do
-  source node[:ldap][:db_ldif]
+  source node['openldap-server'][:db_ldif]
   owner 'root'
   group 'root'
   mode '0644'

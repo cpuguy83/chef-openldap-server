@@ -3,11 +3,11 @@ dn: olcDatabase=hdb,cn=config
 objectClass: olcDatabaseConfig
 objectClass: olcHdbConfig
 olcDatabase: {1}hdb
-olcDbDirectory: <%= node[:ldap][:db_dir] %>
-olcSuffix: <%= node[:ldap][:domain_suffix] %>
+olcDbDirectory: <%= node['openldap-server'][:db_dir] %>
+olcSuffix: <%= node['openldap-server'][:domain_suffix] %>
 olcLastMod: TRUE
-olcRootDN: <%= node[:ldap][:rootDN] %>
-olcRootPW: <%= node[:ldap][:rootpw] %>
+olcRootDN: <%= node['openldap-server'][:rootDN] %>
+olcRootPW: <%= node['openldap-server'][:rootpw] %>
 olcDbCheckpoint: 512 30
 olcDbConfig: set_cachesize 0 2097152 0
 olcDbConfig: set_lk_max_objects 1500
@@ -34,30 +34,30 @@ olcMemberOfGroupOC: groupOfNames
 olcMemberOfMemberAD: member
 olcMemberOfMemberOfAD: memberOf
 
-dn: <%= node[:ldap][:domain_suffix] %>
+dn: <%= node['openldap-server'][:domain_suffix] %>
 objectClass: top
 objectClass: dcObject
 objectClass: organization
 o: corp
 
-dn: ou=People,<%= node[:ldap][:domain_suffix] %>
+dn: ou=People,<%= node['openldap-server'][:domain_suffix] %>
 objectClass: organizationalUnit
 ou: People
 
-dn: ou=Groups,<%= node[:ldap][:domain_suffix] %>
+dn: ou=Groups,<%= node['openldap-server'][:domain_suffix] %>
 objectClass: organizationalUnit
 ou: Groups
 
-dn: ou=Services,<%= node[:ldap][:domain_suffix] %>
+dn: ou=Services,<%= node['openldap-server'][:domain_suffix] %>
 objectClass: organizationalUnit
 ou: Services
 
 dn: olcDatabase={1}hdb,cn=config
 changetype: modify
 add: olcAccess
-olcAccess: to attrs=userPassword by dn="<%= node[:ldap][:rootDN] %>" write by anonymous auth by self write by * none
+olcAccess: to attrs=userPassword by dn="<%= node['openldap-server'][:rootDN] %>" write by anonymous auth by self write by * none
 olcAccess: to attrs=shadowLastChange by self write by * read
 olcAccess: to dn.base="" by * read
-olcAccess: to * by dn="<%= node[:ldap][:rootDN] %>" write
+olcAccess: to * by dn="<%= node['openldap-server'][:rootDN] %>" write
 
 

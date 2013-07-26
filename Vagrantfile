@@ -18,7 +18,7 @@ Vagrant.configure("2") do |config|
     }
 
     chef.run_list = [
-        "recipe[ldap::default]"
+        "recipe[openldap-server::default]"
     ]
     chef.data_bags_path = '/var/chef/data_bags'
     chef.encrypted_data_bag_secret_key_path = '/tmp/encrypted_data_bag_secret'
