@@ -11,6 +11,7 @@ OpenLDAP 2.4 included the dynamic config option, which is what this cookbook use
   * Configures a basic ldap database  
     * Includes People, Groups, and Services OU containers  
     * Includes the memberOf overlay  
+    * Includes ppolicy overlay
     * Sets up access controls/no unauthenticated access  
 
 * Setup attributes listed below
