@@ -5,15 +5,15 @@
 # Default location of the slapd.conf file or slapd.d cn=config directory. If
 # empty, use the compiled-in default (/etc/ldap/slapd.d with a fallback to
 # /etc/ldap/slapd.conf).
-SLAPD_CONF=<%= @slapd_conf_file %>
+SLAPD_CONF="<%= @slapd_conf %>"
 
 # System account to run the slapd server under. If empty the server
 # will run as root.
-SLAPD_USER="<%= @slapd_user || 'openldap' %>"
+SLAPD_USER="<%= @slapd_user %>"
 
 # System group to run the slapd server under. If empty the server will
 # run in the primary group of its user.
-SLAPD_GROUP="<%= @slapd_group || 'openldap' %>"
+SLAPD_GROUP="<%= @slapd_group %>"
 
 # Path to the pid file of the slapd server. If not set the init.d script
 # will try to figure it out from $SLAPD_CONF (/etc/ldap/slapd.d by
@@ -31,7 +31,7 @@ SLAPD_SERVICES="<%= @slapd_services %>"
 # slapd (but stop will still work).  Uncomment this if you are
 # starting slapd via some other means or if you don't want slapd normally
 # started at boot.
-<% if @slapd_nostart %>
+<% if @slapd_no_start %>
 SLAPD_NO_START=1
 <% else %>
 # SLAPD_NO_START=1
@@ -47,7 +47,7 @@ SLAPD_SENTINEL_FILE=<%= @slapd_sentinel_file %>
 # For Kerberos authentication (via SASL), slapd by default uses the system
 # keytab file (/etc/krb5.keytab).  To use a different keytab file,
 # uncomment this line and change the path.
-export KRB5_KTNAME=<%= @slapd_kerb_file %>
+export KRB5_KTNAME="<%= @krb5_ktname %>"
 
 # Additional options to pass to slapd
 SLAPD_OPTIONS="<%= @slapd_options %>"
